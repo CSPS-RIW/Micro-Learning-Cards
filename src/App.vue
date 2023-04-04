@@ -23,7 +23,7 @@ import Cards from "./components/Cards.vue";
 
 const carouselCards = [
   {
-    img: "./assets/imgs/idea.gif",
+    img: "./src/assets/imgs/idea.gif",
     cardAlt: "Person working on their computer",
     title: "First Card",
     cardText:
@@ -32,7 +32,7 @@ const carouselCards = [
     address: "https://github.com/r-torres-csps",
   },
   {
-    img: "./assets/imgs/time-to-learn.gif",
+    img: "./src/assets/imgs/time-to-learn.gif",
     cardAlt: "Animation of students studying",
     title: "Second Card",
     cardText:
@@ -41,7 +41,7 @@ const carouselCards = [
     address: "https://github.com/bo7owers",
   },
   {
-    img: "./assets/imgs/not-alone.jpg",
+    img: "./src/assets/imgs/not-alone.jpg",
     cardAlt: "Animation of students studying",
     title: "Third Card",
     cardText:
