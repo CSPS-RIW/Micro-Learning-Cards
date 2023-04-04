@@ -17,46 +17,39 @@
 </template>
 
 
-<script lang="ts">
+<script setup>
 import Carousel from './components/Carousel.vue';
 import Cards from "./components/Cards.vue";
-export default {
-  name: "App",
-  components: {
-    Carousel,
-    Cards,
+
+const carouselCards = [
+  {
+    img: "./assets/imgs/idea.gif",
+    cardAlt: "Person working on their computer",
+    title: "First Card",
+    cardText:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla vitae rem ipsam commodi deleniti ab eligendi molestiae eum illo reiciendis quae praesentium quas asperiores neque est, doloribus accusamus consequatur veniam, recusandae aspernatur architecto velit? Fuga, iure?",
+    linkText: "Visit page",
+    address: "https://github.com/r-torres-csps",
   },
-  setup() {
-    const carouselCards = [
-      {
-        img: "./assets/imgs/idea.gif",
-        cardAlt: "Person working on their computer",
-        title: "First Card",
-        cardText:
-          "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla vitae rem ipsam commodi deleniti ab eligendi molestiae eum illo reiciendis quae praesentium quas asperiores neque est, doloribus accusamus consequatur veniam, recusandae aspernatur architecto velit? Fuga, iure?",
-        linkText: "Visit page",
-        address: "https://github.com/r-torres-csps",
-      },
-      {
-        img: "./assets/imgs/time-to-learn.gif",
-        cardAlt: "Animation of students studying",
-        title: "Second Card",
-        cardText:
-          "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde iusto, deserunt commodi debitis repellat et dolore cum eos! Illum autem quam libero. Pariatur, delectus adipisci? Aliquam esse cumque tenetur nam.",
-        linkText: "Visit page",
-        address: "https://github.com/bo7owers",
-      },
-      {
-        img: "./assets/imgs/not-alone.jpg",
-        cardAlt: "Animation of students studying",
-        title: "Third Card",
-        cardText:
-          "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum autem sit nulla, amet nihil eveniet. Unde iusto, deserunt commodi debitis repellat et dolore cum eos! Illum autem quam libero. Pariatur, delectus adipisci? Aliquam esse cumque tenetur nam.",
-        linkText: "Visit page",
-        address: "https://github.com/bo7owers",
-      },
-    ];
-    return { carouselCards };
+  {
+    img: "./assets/imgs/time-to-learn.gif",
+    cardAlt: "Animation of students studying",
+    title: "Second Card",
+    cardText:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde iusto, deserunt commodi debitis repellat et dolore cum eos! Illum autem quam libero. Pariatur, delectus adipisci? Aliquam esse cumque tenetur nam.",
+    linkText: "Visit page",
+    address: "https://github.com/bo7owers",
   },
-};
+  {
+    img: "./assets/imgs/not-alone.jpg",
+    cardAlt: "Animation of students studying",
+    title: "Third Card",
+    cardText:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum autem sit nulla, amet nihil eveniet. Unde iusto, deserunt commodi debitis repellat et dolore cum eos! Illum autem quam libero. Pariatur, delectus adipisci? Aliquam esse cumque tenetur nam.",
+    linkText: "Visit page",
+    address: "https://github.com/bo7owers",
+  },
+];
+
+
 </script>
