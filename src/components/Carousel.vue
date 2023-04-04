@@ -2,99 +2,81 @@
     <div class="carousel">
         <!-- Move slot outside nav if there are any issues -->
         <slot :currentSlide="currentSlide" />
-        <div v-if="enableNavigation" class="navigation" role="navigation"
-            aria-label="Card navigation">
+        <div v-if="enableNavigation" class="navigation" role="navigation" aria-label="Card navigation">
             <div class="toggle left">
-                <i @click="prevCard" @keyup.enter="prevCard" @keyup.space="prevCard"
-                    class="fas fa-chevron-left"
+                <i @click="prevCard" @keyup.enter="prevCard" @keyup.space="prevCard" class="fas fa-chevron-left"
                     :class="[currentSlide === 1 ? 'btn-disabled ' : 'btn-primary']"
-                    :disabled="currentSlide === 1 ? 'true' : 'false'" tabindex="0"
-                    role="button" aria-labelledby="Previous card"></i>
+                    :disabled="currentSlide === 1 ? 'true' : 'false'" tabindex="0" role="button"
+                    aria-labelledby="Previous card"></i>
             </div>
             <div class="toggle right">
-                <i @click="nextCard" @keyup.enter="nextCard" @keyup.space="nextCard"
-                    class="fas fa-chevron-right"
+                <i @click="nextCard" @keyup.enter="nextCard" @keyup.space="nextCard" class="fas fa-chevron-right"
                     :class="[currentSlide === 3 ? 'btn-disabled' : 'btn-primary']"
-                    :disabled="currentSlide === 3 ? 'true' : 'false'" tabindex="0"
-                    role="button" aria-labelledby="Next card"></i>
+                    :disabled="currentSlide === 3 ? 'true' : 'false'" tabindex="0" role="button"
+                    aria-labelledby="Next card"></i>
             </div>
         </div>
         <!-- Pagination -->
         <div v-if="enablePagination" class="pagination">
-            <span v-for="(card, index) in getSlideCount" :key="index"
-                :class="index + 1 === currentSlide ? 'active' : ''"
-                @click="goToCard(index)" @keyup.enter="goToCard(index)"
-                @keyup.space="goToCard(index)" tabindex="0">
+            <span v-for="(card, index) in getSlideCount" :key="index" :class="index + 1 === currentSlide ? 'active' : ''"
+                @click="goToCard(index)" @keyup.enter="goToCard(index)" @keyup.space="goToCard(index)" tabindex="0">
             </span>
         </div>
     </div>
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted } from "vue";
-export default {
-    name: Carousel,
-    props: ["allowAutoPlay", "delay", "navigation", "pagination"],
-    setup(props) {
-        const currentSlide = ref(1);
-        const getSlideCount = ref(null);
-        const enableAutoPlay = ref(
-            props.allowAutoPlay === undefined ? true : props.allowAutoPlay
-        );
-        const autoPlayDelay = ref(props.delay === undefined ? 5000 : props.delay);
-        const enablePagination = ref(
-            props.pagination === undefined ? true : props.pagination
-        );
-        const enableNavigation = ref(
-            props.navigation === undefined ? true : props.navigation
-        );
 
-        const prevCard = () => {
-            currentSlide.value === 1
-                ? (currentSlide.value = 1)
-                : (currentSlide.value -= 1);
-        };
+const props = defineProps(["allowAutoPlay", "delay", "navigation", "pagination"])
+const currentSlide = ref(1);
+const getSlideCount = ref(null);
+const enableAutoPlay = ref(
+    props.allowAutoPlay === undefined ? true : props.allowAutoPlay
+);
+const autoPlayDelay = ref(props.delay === undefined ? 5000 : props.delay);
+const enablePagination = ref(
+    props.pagination === undefined ? true : props.pagination
+);
+const enableNavigation = ref(
+    props.navigation === undefined ? true : props.navigation
+);
 
-        // go to the next card
-        const nextCard = () => {
-            currentSlide.value === getSlideCount.value
-                ? (currentSlide.value = getSlideCount.value) // Set this = 1 for looping
-                : (currentSlide.value += 1);
-        };
-
-        // go to specific card (pagination)
-        const goToCard = (index) => {
-            currentSlide.value = index + 1;
-        };
-
-        // enable/disable auto play
-
-        const autoPlay = () => {
-            setInterval(() => {
-                nextCard();
-            }, autoPlayDelay.value);
-        };
-
-        enableAutoPlay.value ? autoPlay() : "";
-
-        onMounted(() => {
-            getSlideCount.value = document.querySelectorAll(".card-slide").length;
-        });
-
-        console.log(currentSlide);
-        return {
-            currentSlide,
-            nextCard,
-            prevCard,
-            getSlideCount,
-            goToCard,
-            enablePagination,
-            enableNavigation,
-            enableAutoPlay,
-            autoPlayDelay,
-        };
-    },
+const prevCard = () => {
+    currentSlide.value === 1
+        ? (currentSlide.value = 1)
+        : (currentSlide.value -= 1);
 };
+
+// go to the next card
+const nextCard = () => {
+    currentSlide.value === getSlideCount.value
+        ? (currentSlide.value = getSlideCount.value) // Set this = 1 for looping
+        : (currentSlide.value += 1);
+};
+
+// go to specific card (pagination)
+const goToCard = (index) => {
+    currentSlide.value = index + 1;
+};
+
+// enable/disable auto play
+
+const autoPlay = () => {
+    setInterval(() => {
+        nextCard();
+    }, autoPlayDelay.value);
+};
+
+enableAutoPlay.value ? autoPlay() : "";
+
+onMounted(() => {
+    getSlideCount.value = document.querySelectorAll(".card-slide").length;
+});
+
+console.log(currentSlide);
+
+
 </script>
 
 <style>

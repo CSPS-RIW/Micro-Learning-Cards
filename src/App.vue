@@ -1,15 +1,14 @@
 <template>
   <main class="home" role="main">
-    <Carousel :navigation="true" :pagination="true" :allowAutoPlay="false" :delay="2000"
-      class="carousel card-container" v-slot="{ currentSlide }">
-      <Cards v-for="(card, index) in carouselCards" :key="card">
+    <Carousel :navigation="true" :pagination="true" :allowAutoPlay="false" :delay="2000" class="carousel card-container"
+      v-slot="{ currentSlide }">
+      <Cards v-for="(card, index) in carouselCards" :key="index">
         <div v-show="currentSlide === index + 1" class="card">
           <img :src="card.img" class="card-img" :alt="card.cardAlt" />
           <div class="card-body">
             <h3 class="card-title">{{ card.title }}</h3>
             <p class="card-text">{{ card.cardText }}</p>
-            <a :href="card.address" class="btn btn-primary next" role="btn"
-              target="_blank">{{ card.linkText }}</a>
+            <a :href="card.address" class="btn btn-primary next" role="btn" target="_blank">{{ card.linkText }}</a>
           </div>
         </div>
       </Cards>
@@ -19,7 +18,7 @@
 
 
 <script lang="ts">
-import Carousel from "./components/Carousel.vue";
+import Carousel from './components/Carousel.vue';
 import Cards from "./components/Cards.vue";
 export default {
   name: "App",

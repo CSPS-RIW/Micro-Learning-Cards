@@ -1,0 +1,119 @@
+@use '../vars/colors'as c;
+
+/* **************************************************
+ * TYPOGRAPHY
+ * *************************************************/
+
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+
+
+
+
+/* **************************************************
+ * applying fonts and sizes to general items
+ * *************************************************/
+
+body {
+    font-family: "Noto Sans", sans-serif;
+    // font-size: 20px !important;
+    line-height: 1.65em;
+    color: c.$body-grey;
+}
+
+h1,
+h2,
+h2.modal-title,
+h3,
+h4,
+h5 {
+
+    font-family: "Noto Sans", "Lato", sans-serif;
+    line-height: 1.1em;
+}
+
+h1,
+h3,
+h5 {
+    color: c.$slate-blue;
+    line-height: 1.1em;
+    font-weight: 400;
+}
+
+h2,
+h2.modal-title,
+h4,
+h6 {
+    color: c.$true-blue;
+    line-height: 1.1em;
+    font-weight: 400;
+}
+
+h {
+    &1 {
+        font-size: 1.9rem;
+        font-weight: 400;
+        margin: 0.625rem 0;
+    }
+
+    &2 {
+
+        font-size: 1.75rem;
+        margin-bottom: 15px;
+        font-weight: 400;
+    }
+
+    &3 {
+
+        font-size: 1.625rem;
+        font-weight: 400;
+    }
+
+    &4 {
+
+        font-size: 1.5rem;
+        font-weight: 800;
+    }
+
+    &5 {
+
+        font-size: 1.125rem;
+        font-weight: 800;
+    }
+}
+
+h2.modal-title {
+    font-size: 1.75rem;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+a {
+
+    font-family: "Noto Sans", sans-serif;
+    border: none;
+    text-decoration: underline;
+    color: c.$hyperlink-blue;
+
+    &:visited {
+        color: c.$hyperlink-visited;
+        text-decoration: underline;
+    }
+
+    &:active,
+    &:hover,
+    &:focus {
+        color: c.$hyperlink-hover;
+    }
+}
+
+p {
+    color: c.$body-grey;
+    font-size: 1.1875rem !important;
+    line-height: 1.65em;
+}
+
+.align-right {
+    text-align: right;
+}

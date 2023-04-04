@@ -1,0 +1,22 @@
+@use '../vars/colors'as c;
+
+.btn-primary {
+    background: #356;
+    color: #fff;
+    transition: all 300ms ease-in-out;
+
+    &:visited {
+        color: #fff;
+    }
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    filter: grayscale(60%);
+}
+
+.btn-disabled {
+    background: #356;
+    cursor: not-allowed;
+    filter: grayscale(100%);
+}

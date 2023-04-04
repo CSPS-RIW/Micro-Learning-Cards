@@ -1,0 +1,43 @@
+/* **************************************************
+ * Color scheme
+ * *************************************************/
+
+$school-purple:#3f2a56;
+
+$slate-blue:#4e5b73;
+$true-blue:#1c578a;
+
+$system-gray:#f1f5fb;
+$body-grey:#333;
+
+$white-heat:#fff;
+$horizontal-rule:#ddd;
+
+$hyperlink-blue:#2b4380;
+$hyperlink-hover:#0535d2;
+$hyperlink-visited:#7834bc;
+
+
+@mixin background-opacity($color, $opacity: 0.3) {
+    background: $color;
+    /* The Fallback */
+    background: rgba($color, $opacity);
+}
+
+/* **************************************************
+   * default colors
+   * *************************************************/
+$icon-default-color:$school-purple;
+$icon-default-bg:$system-gray;
+//buttons
+$btn-txt-color:$body-grey;
+$btn-txt-color-hover:$white-heat;
+
+$btn-icon-color:$icon-default-color;
+$btn-icon-color-hover:$white-heat;
+
+$btn-bg-color:$system-gray;
+$btn-bg-color-hover:$slate-blue;
+
+$btn-border-color:$slate-blue;
+$btn-border-color-hover:transparent;
