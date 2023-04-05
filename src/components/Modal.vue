@@ -89,7 +89,6 @@ const props = defineProps(
         img: { type: String, required: false },
         action: { type: String, required: true },
     })
-console.log(`${props.id}, ${props.action}`);
 </script>
 
 <template>
