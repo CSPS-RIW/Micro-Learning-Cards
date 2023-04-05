@@ -24,10 +24,10 @@
     gap: 1em;
 }
 
-.card-slide {
+/* .card-slide {
     z-index: 100000;
     position: fixed;
-}
+} */
 
 .card {
     width: 18rem;
