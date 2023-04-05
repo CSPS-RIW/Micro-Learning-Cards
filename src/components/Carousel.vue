@@ -16,16 +16,18 @@ const enableNavigation = ref(
 );
 
 const prevCard = () => {
-    currentSlide.value === 1
-        ? (currentSlide.value = 1)
-        : (currentSlide.value -= 1);
+    // currentSlide.value === 1
+    //     ? (currentSlide.value = 1)
+    //     : (currentSlide.value -= 1);
+    console.log(`prev card`);
 };
 
 // go to the next card
 const nextCard = () => {
-    currentSlide.value === getSlideCount.value
-        ? (currentSlide.value = getSlideCount.value) // Set this = 1 for looping
-        : (currentSlide.value += 1);
+    // currentSlide.value === getSlideCount.value
+    //     ? (currentSlide.value = getSlideCount.value) // Set this = 1 for looping
+    //     : (currentSlide.value += 1);
+    console.log(`next card`);
 };
 
 // go to specific card (pagination)
@@ -47,7 +49,7 @@ onMounted(() => {
     getSlideCount.value = document.querySelectorAll(".card-slide").length;
 });
 
-console.log(currentSlide);
+console.log(currentSlide.value);
 
 
 </script>
@@ -55,20 +57,17 @@ console.log(currentSlide);
 <template>
     <div class="carousel">
         <!-- Move slot outside nav if there are any issues -->
-        <slot :currentSlide="currentSlide" />
         <div v-if="enableNavigation" class="navigation" role="navigation" aria-label="Card navigation">
-            <div class="toggle left">
-                <i @click="prevCard" @keyup.enter="prevCard" @keyup.space="prevCard" class="fas fa-chevron-left"
-                    :class="[currentSlide === 1 ? 'btn-disabled ' : 'btn-primary']"
-                    :disabled="currentSlide === 1 ? 'true' : 'false'" tabindex="0" role="button"
-                    aria-labelledby="Previous card"></i>
-            </div>
-            <div class="toggle right">
-                <i @click="nextCard" @keyup.enter="nextCard" @keyup.space="nextCard" class="fas fa-chevron-right"
-                    :class="[currentSlide === 3 ? 'btn-disabled' : 'btn-primary']"
-                    :disabled="currentSlide === 3 ? 'true' : 'false'" tabindex="0" role="button"
-                    aria-labelledby="Next card"></i>
-            </div>
+            <button class="toggle left" :class="[currentSlide === 1 ? 'btn-disabled ' : 'btn-primary']"
+                :disabled="currentSlide === 1 ? 'true' : 'false'" aria-labelledby="Previous card" @click="prevCard()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <slot :currentSlide="currentSlide" />
+
+            <button class="toggle right" :class="[currentSlide === 3 ? 'btn-disabled' : 'btn-primary']"
+                :disabled="currentSlide === 3 ? 'true' : 'false'" aria-labelledby="Next card" @click="nextCard()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
         <!-- Pagination -->
         <div v-if="enablePagination" class="pagination">
@@ -79,32 +78,23 @@ console.log(currentSlide);
     </div>
 </template>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 .navigation {
     /* background: green; */
-    height: 100%;
-    width: 25%;
-    position: absolute;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.navigation .toggle {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    flex: 1;
-}
+
 
 .navigation .right {
     justify-content: flex-end;
+}
+
+button {
+    border-radius: 50%;
+    padding: 10px 20px;
 }
 
 i {
@@ -116,9 +106,6 @@ i {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
 }
 
 .right i::before {
