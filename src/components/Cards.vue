@@ -11,7 +11,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style lang="scss">
 .card-container {
     display: -webkit-box;
     display: -moz-box;
@@ -24,10 +24,9 @@
     gap: 1em;
 }
 
-/* .card-slide {
-    z-index: 100000;
+.card-slide {
     position: fixed;
-} */
+}
 
 .card {
     width: 18rem;
