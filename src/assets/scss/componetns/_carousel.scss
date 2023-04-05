@@ -1,19 +1,19 @@
-@use '../vars/colors'as c;
+@use '../vars/colors' as c;
 
 #app {
-    /* -webkit-font-smoothing: antialiased;
+	/* -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: linear-gradient(to bottom right, #5a5a5a, #000); */
 }
 
 .flex-icon {
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+	justify-content: center;
 }
 
-.carousel {
-    width: 100vw;
-    height: 100vh;
-}
+// .carousel {
+//     width: 100vw;
+//     height: 100vh;
+// }
