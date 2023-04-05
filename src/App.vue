@@ -64,6 +64,11 @@ const carouselCards = [
             <h3 class="card-title">{{ card.title }}</h3>
             <p class="card-text">{{ card.cardText }}</p>
             <Modal :id="card.id" action="modal" :title="card.title" :btnText="card.btnText">
+              <template #modalTrigger>
+                <button id="trigger_1" class="btn btn-primary trigger-btn hidden" title="Open Modal"
+                  :data-modal="card.id">hi
+                  there</button>
+              </template>
               <template #content>
                 <p>Hello there</p>
               </template>

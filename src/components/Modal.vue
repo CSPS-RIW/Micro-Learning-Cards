@@ -94,10 +94,11 @@ console.log(`${props.id}, ${props.action}`);
 
 <template>
     <div class="content-wrapper">
-        <button id="trigger_1" class="btn btn-primary trigger-btn hidden" title="Open Modal" :data-modal="id">
+        <button id="trigger_1" class="btn btn-primary trigger-btn hidden" title="Open Modal" :data-modal="id"
+            v-if="!$slots.modalTrigger">
             {{ btnText }}
         </button>
-        <slot name="trigger" :id="id" />
+        <slot name="modalTrigger" :id="id" />
     </div>
 
     <!-- Modals should be outside .content-wrapper-->
