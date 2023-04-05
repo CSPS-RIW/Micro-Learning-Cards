@@ -1,30 +1,3 @@
-<template>
-    <div class="carousel">
-        <!-- Move slot outside nav if there are any issues -->
-        <slot :currentSlide="currentSlide" />
-        <div v-if="enableNavigation" class="navigation" role="navigation" aria-label="Card navigation">
-            <div class="toggle left">
-                <i @click="prevCard" @keyup.enter="prevCard" @keyup.space="prevCard" class="fas fa-chevron-left"
-                    :class="[currentSlide === 1 ? 'btn-disabled ' : 'btn-primary']"
-                    :disabled="currentSlide === 1 ? 'true' : 'false'" tabindex="0" role="button"
-                    aria-labelledby="Previous card"></i>
-            </div>
-            <div class="toggle right">
-                <i @click="nextCard" @keyup.enter="nextCard" @keyup.space="nextCard" class="fas fa-chevron-right"
-                    :class="[currentSlide === 3 ? 'btn-disabled' : 'btn-primary']"
-                    :disabled="currentSlide === 3 ? 'true' : 'false'" tabindex="0" role="button"
-                    aria-labelledby="Next card"></i>
-            </div>
-        </div>
-        <!-- Pagination -->
-        <div v-if="enablePagination" class="pagination">
-            <span v-for="(card, index) in getSlideCount" :key="index" :class="index + 1 === currentSlide ? 'active' : ''"
-                @click="goToCard(index)" @keyup.enter="goToCard(index)" @keyup.space="goToCard(index)" tabindex="0">
-            </span>
-        </div>
-    </div>
-</template>
-
 <script setup>
 import { ref, onMounted } from "vue";
 
@@ -79,7 +52,34 @@ console.log(currentSlide);
 
 </script>
 
-<style>
+<template>
+    <div class="carousel">
+        <!-- Move slot outside nav if there are any issues -->
+        <slot :currentSlide="currentSlide" />
+        <div v-if="enableNavigation" class="navigation" role="navigation" aria-label="Card navigation">
+            <div class="toggle left">
+                <i @click="prevCard" @keyup.enter="prevCard" @keyup.space="prevCard" class="fas fa-chevron-left"
+                    :class="[currentSlide === 1 ? 'btn-disabled ' : 'btn-primary']"
+                    :disabled="currentSlide === 1 ? 'true' : 'false'" tabindex="0" role="button"
+                    aria-labelledby="Previous card"></i>
+            </div>
+            <div class="toggle right">
+                <i @click="nextCard" @keyup.enter="nextCard" @keyup.space="nextCard" class="fas fa-chevron-right"
+                    :class="[currentSlide === 3 ? 'btn-disabled' : 'btn-primary']"
+                    :disabled="currentSlide === 3 ? 'true' : 'false'" tabindex="0" role="button"
+                    aria-labelledby="Next card"></i>
+            </div>
+        </div>
+        <!-- Pagination -->
+        <div v-if="enablePagination" class="pagination">
+            <span v-for="(card, index) in getSlideCount" :key="index" :class="index + 1 === currentSlide ? 'active' : ''"
+                @click="goToCard(index)" @keyup.enter="goToCard(index)" @keyup.space="goToCard(index)" tabindex="0">
+            </span>
+        </div>
+    </div>
+</template>
+
+<style lang="scss" >
 .navigation {
     /* background: green; */
     height: 100%;
@@ -163,5 +163,11 @@ i {
     filter: brightness(1.75);
     width: 0.875rem;
     height: 0.875rem;
+}
+
+.carousel {
+    // create custom prop for height
+    // it should be the same as card height
+    height: 45rem;
 }
 </style>
