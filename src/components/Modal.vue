@@ -82,7 +82,7 @@ onMounted(() => {
 
 const props = defineProps(
     {
-        id: { type: String, required: true },
+        id: { type: Number, required: true },
         title: { type: String, required: true },
         btnText: { type: String, required: true },
         contentType: { type: String, required: false },

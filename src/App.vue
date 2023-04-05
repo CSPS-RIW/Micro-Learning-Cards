@@ -24,8 +24,9 @@ const carouselCards = [
     title: "First Card",
     cardText:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla vitae rem ipsam commodi deleniti ab eligendi molestiae eum illo reiciendis quae praesentium quas asperiores neque est, doloribus accusamus consequatur veniam, recusandae aspernatur architecto velit? Fuga, iure?",
-    linkText: "Visit page",
+    btnText: "Visit page",
     address: "https://github.com/r-torres-csps",
+    id: 1
   },
   {
     img: "./src/assets/imgs/time-to-learn.gif",
@@ -33,8 +34,9 @@ const carouselCards = [
     title: "Second Card",
     cardText:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde iusto, deserunt commodi debitis repellat et dolore cum eos! Illum autem quam libero. Pariatur, delectus adipisci? Aliquam esse cumque tenetur nam.",
-    linkText: "Visit page",
+    btnText: "Visit page",
     address: "https://github.com/bo7owers",
+    id: 2
   },
   {
     img: "./src/assets/imgs/not-alone.jpg",
@@ -42,8 +44,9 @@ const carouselCards = [
     title: "Third Card",
     cardText:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum autem sit nulla, amet nihil eveniet. Unde iusto, deserunt commodi debitis repellat et dolore cum eos! Illum autem quam libero. Pariatur, delectus adipisci? Aliquam esse cumque tenetur nam.",
-    linkText: "Visit page",
+    btnText: "Visit page",
     address: "https://github.com/bo7owers",
+    id: 3
   },
 ];
 
@@ -60,7 +63,11 @@ const carouselCards = [
           <div class="card-body">
             <h3 class="card-title">{{ card.title }}</h3>
             <p class="card-text">{{ card.cardText }}</p>
-            <a :href="card.address" class="btn btn-primary next" role="btn" target="_blank">{{ card.linkText }}</a>
+            <Modal :id="card.id" action="modal" :title="card.title" :btnText="card.btnText">
+              <template #content>
+                <p>Hello there</p>
+              </template>
+            </Modal>
           </div>
         </div>
       </Cards>
