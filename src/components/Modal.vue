@@ -80,26 +80,36 @@ onMounted(() => {
 })
 
 
-console.log(`loaded`);
+const props = defineProps(
+    {
+        id: { type: String, required: true },
+        title: { type: String, required: true },
+        btnText: { type: String, required: true },
+        contentType: { type: String, required: false },
+        img: { type: String, required: false },
+        action: { type: String, required: true },
+    })
+console.log(`${props.id}, ${props.action}`);
 </script>
 
 <template>
     <div class="content-wrapper">
-        <button id="trigger_1" class="btn btn-secondary trigger-btn hidden" title="Open Modal" data-modal="modal_1">
-            Trigger #1
+        <button id="trigger_1" class="btn btn-primary trigger-btn hidden" title="Open Modal" :data-modal="id">
+            {{ btnText }}
         </button>
+        <slot name="trigger" :id="id" />
     </div>
 
     <!-- Modals should be outside .content-wrapper-->
     <div class="modals">
-        <dialog id="modal_1">
+        <dialog :id="id">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="add-title">Modal title</h2>
+                    <h2 class="add-title">{{ title }}</h2>
                     <button title="Close overlay (escape key)" type="button" class="close-modal">×</button>
                 </div>
                 <div class="modal-body">
-                    <p>Modal body</p>
+                    <slot name="content" />
                 </div>
                 <div class="modal-footer">
                     <button id="btn_close_1" class="btn btn-secondary close-modal">Close</button>
