@@ -16,17 +16,17 @@ const enableNavigation = ref(
 );
 
 const prevCard = () => {
-    // currentSlide.value === 1
-    //     ? (currentSlide.value = 1)
-    //     : (currentSlide.value -= 1);
+    currentSlide.value === 1
+        ? (currentSlide.value = 1)
+        : (currentSlide.value -= 1);
     console.log(`prev card`);
 };
 
 // go to the next card
 const nextCard = () => {
-    // currentSlide.value === getSlideCount.value
-    //     ? (currentSlide.value = getSlideCount.value) // Set this = 1 for looping
-    //     : (currentSlide.value += 1);
+    currentSlide.value === getSlideCount.value
+        ? (currentSlide.value = getSlideCount.value) // Set this = 1 for looping
+        : (currentSlide.value += 1);
     console.log(`next card`);
 };
 
@@ -59,13 +59,13 @@ console.log(currentSlide.value);
         <!-- Move slot outside nav if there are any issues -->
         <div v-if="enableNavigation" class="navigation" role="navigation" aria-label="Card navigation">
             <button class="toggle left" :class="[currentSlide === 1 ? 'btn-disabled ' : 'btn-primary']"
-                :disabled="currentSlide === 1 ? 'true' : 'false'" aria-labelledby="Previous card" @click="prevCard()">
+                aria-labelledby="Previous card" @click="prevCard()">
                 <i class="fas fa-chevron-left"></i>
             </button>
             <slot :currentSlide="currentSlide" />
 
             <button class="toggle right" :class="[currentSlide === 3 ? 'btn-disabled' : 'btn-primary']"
-                :disabled="currentSlide === 3 ? 'true' : 'false'" aria-labelledby="Next card" @click="nextCard()">
+                aria-labelledby="Next card" @click="nextCard()">
                 <i class="fas fa-chevron-right"></i>
             </button>
         </div>
@@ -84,41 +84,30 @@ console.log(currentSlide.value);
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 25em;
 }
 
 
 
-.navigation .right {
-    justify-content: flex-end;
-}
+// .navigation .right {
+//     justify-content: flex-end;
+// }
 
 button {
     border-radius: 50%;
-    padding: 10px 20px;
-}
-
-i {
-    cursor: pointer;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
+    padding: 15px;
+    border-color: transparent;
+    color: white;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    i {
+        cursor: pointer;
+    }
 }
 
-.right i::before {
-    position: relative !important;
-    top: 0.7rem !important;
-    left: 1rem !important;
-}
-
-.left i::before {
-    position: relative !important;
-    top: 0.7rem;
-    left: 0.85rem;
-}
 
 /* Pagination */
 .pagination {
