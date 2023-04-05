@@ -1,90 +1,117 @@
 <script setup>
 import 'wicg-inert'
+import { onMounted } from 'vue';
+onMounted(() => {
+    let triggerBtn = document.querySelectorAll('.trigger-btn');
+    let closeBtns = document.querySelectorAll('.close-modal');
+    let dialog = document.querySelector('dialog');
+    let modals = document.querySelectorAll('dialog');
+    let content = document.querySelector('.content-wrapper');
 
-let triggerBtn = document.querySelectorAll('.trigger-btn');
-let closeBtns = document.querySelectorAll('.close-modal');
-let dialog = document.querySelector('dialog');
-let modals = document.querySelectorAll('dialog');
-let content = document.querySelector('.content-wrapper');
-
-const closeModal = (e) => {
-    let closestDialog = e.target.closest('dialog');
-    // Animate closing modals
-    content.inert = false;
-    // content.removeAttribute('inert');
-    closestDialog.setAttribute('hiding', '');
-    closestDialog.addEventListener('animationend', () => {
-        closestDialog.close();
-        closestDialog.removeAttribute('hiding');
-    }, {
-        once: true
-    })
-}
-
-// if (typeof dialog.showModal !== 'function') {
-//   modals.hidden === true;
-//   console.error('Update your browser for a more interactive experience');
-// }
-
-modals.forEach((modal) => {
-    if (typeof dialog.showModal === "function") {
-
-        triggerBtn.forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-
-                // if trigger's data-modal maches modal's id, open that one
-                if (e.target.getAttribute('data-modal') === modal.getAttribute('id')) {
-                    modal.setAttribute('showing', '');
-                    modal.showModal();
-                    modal.addEventListener('animationend', () => {
-                        modal.removeAttribute('showing');
-                        content.inert = true;
-                    }, {
-                        once: true
-                    })
-                }
-
-            })
-        });
-
-        // Close modals
-        closeBtns.forEach(button => {
-            button.addEventListener('click', (e) => {
-                closeModal(e);
-            });
-        });
-        // Close modal w/ backdrop
-        modal.addEventListener('click', (e) => {
-            if (e.target.nodeName === 'DIALOG') {
-                closeModal(e);
-            }
+    function closeModal(e) {
+        let closestDialog = e.target.closest('dialog');
+        // Animate closing modals
+        content.inert = false;
+        // content.removeAttribute('inert');
+        closestDialog.setAttribute('hiding', '');
+        closestDialog.addEventListener('animationend', () => {
+            closestDialog.close();
+            closestDialog.removeAttribute('hiding');
+        }, {
+            once: true
         })
-
-        // remove inert when closing modal with esc key
-        modal.addEventListener('keydown', (e) => {
-            if ((e.key == 'Escape' || e.key == 'Esc' || e.code == 27)) {
-                closeModal(e);
-
-            }
-        })
-    } else {
-        // TODO If a browser doesn't support the dialog, then hide the
-        // dialog contents by default and add content modal content to div
-        console.warn('Update your browser for a more interactive experience');
-        modal.hidden = true; //  delete instead of hiding them
-
     }
 
+    // if (typeof dialog.showModal !== 'function') {
+    //     modals.hidden === true;
+    //     console.error('Update your browser for a more interactive experience');
+    // }
+
+    modals.forEach((modal) => {
+        if (typeof dialog.showModal === "function") {
+
+            triggerBtn.forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+
+                    // if trigger's data-modal maches modal's id, open that one
+                    if (e.target.getAttribute('data-modal') === modal.getAttribute('id')) {
+                        modal.setAttribute('showing', '');
+                        modal.showModal();
+                        modal.addEventListener('animationend', () => {
+                            modal.removeAttribute('showing');
+                            content.inert = true;
+                        }, {
+                            once: true
+                        })
+                    }
+
+                })
+            });
+
+            // Close modals
+            closeBtns.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    closeModal(e);
+                });
+            });
+            // Close modal w/ backdrop
+            modal.addEventListener('click', (e) => {
+                if (e.target.nodeName === 'DIALOG') {
+                    closeModal(e);
+                }
+            })
+
+            // remove inert when closing modal with esc key
+            modal.addEventListener('keydown', (e) => {
+                if ((e.key == 'Escape' || e.key == 'Esc' || e.code == 27)) {
+                    closeModal(e);
+
+                }
+            })
+        } else {
+            // TODO If a browser doesn't support the dialog, then hide the
+            // dialog contents by default and add content modal content to div
+            console.warn('Update your browser for a more interactive experience');
+            modal.hidden = true; //  delete instead of hiding them
+
+        }
+
+    })
 })
+
+
+console.log(`loaded`);
 </script>
 
 <template>
-    <div></div>
+    <div class="content-wrapper">
+        <button id="trigger_1" class="btn btn-secondary trigger-btn hidden" title="Open Modal" data-modal="modal_1">
+            Trigger #1
+        </button>
+    </div>
+
+    <!-- Modals should be outside .content-wrapper-->
+    <div class="modals">
+        <dialog id="modal_1">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="add-title">Modal title</h2>
+                    <button title="Close overlay (escape key)" type="button" class="close-modal">×</button>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn_close_1" class="btn btn-secondary close-modal">Close</button>
+                </div>
+            </div>
+        </dialog>
+    </div>
 </template>
 
 <style lang='scss' scoped>
 @use '../assets/scss/mixins/breakpoints' as b;
-@use '../assets/scss/vars/colors' as v;
+@use '../assets/scss/vars/colors' as c;
 
 dialog {
     border: none;

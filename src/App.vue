@@ -1,6 +1,7 @@
 <script setup>
 import Carousel from './components/Carousel.vue';
 import Cards from "./components/Cards.vue";
+import Modal from './components/Modal.vue';
 import { onBeforeMount } from 'vue';
 
 onBeforeMount(() => {
@@ -51,6 +52,7 @@ const carouselCards = [
 
 <template>
   <main class="home" role="main">
+    <Modal />
     <Carousel :navigation="true" :pagination="true" :allowAutoPlay="false" :delay="2000" class="carousel card-container"
       v-slot="{ currentSlide }">
       <Cards v-for="(card, index) in carouselCards" :key="index">
