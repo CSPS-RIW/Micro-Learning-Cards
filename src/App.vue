@@ -66,11 +66,10 @@ const carouselCards = [
             <Modal :id="card.id" action="modal" :title="card.title" :btnText="card.btnText">
               <template #modalTrigger>
                 <button id="trigger_1" class="btn btn-primary trigger-btn hidden" title="Open Modal"
-                  :data-modal="card.id">hi
-                  there</button>
+                  :data-modal="card.id">{{ card.title }}</button>
               </template>
               <template #content>
-                <p>Hello there</p>
+                <p>{{ card.cardText }}</p>
               </template>
             </Modal>
           </div>
