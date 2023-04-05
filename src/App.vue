@@ -2,6 +2,16 @@
 import Carousel from './components/Carousel.vue';
 import Cards from "./components/Cards.vue";
 
+//change favicon depending on user color preference
+const favicon = document.querySelector('.favicon')
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  // Dark
+  favicon.href = '/CSPS-Logo-Small-White.png'
+} else {
+  // Light
+  favicon.href = '/csps-logo-black.png'
+}
+
 const carouselCards = [
   {
     img: "./src/assets/imgs/idea.gif",
